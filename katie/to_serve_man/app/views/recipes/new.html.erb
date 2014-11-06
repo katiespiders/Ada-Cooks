@@ -1,47 +1,41 @@
-<%= form_for :recipes, url: recipes_path do |f| %>
+<%= form_tag recipes_path do %>
+  <div>
+    <%= label_tag "Title" %>
+    <%= text_field_tag "recipes[title]" %>
+  </div>
 
-<div class="form-group">
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-</div>
+  <div>
+    <%= label_tag "Author" %>
+    <%= text_field_tag "recipes[author]" %>
+  </div>
 
-<div class="form-group">
-  <%= f.label :author %>
-  <%= f.text_field :author %>
-</div>
+  <div>
+    <%= label_tag "Difficulty rating" %>
+    <%= number_field_tag "recipes[difficulty]" %>
+  </div>
 
-<div class="form-group">
-  <%= f.label :prep_time %>
-  <%= f.number_field :prep_time %>
+  <div>
+    <%= label_tag "Servings" %>
+    <%= number_field_tag "recipes[servings]" %>
+  </div>
 
-  <%= f.label :cook_time %>
-  <%= f.number_field :cook_time %>
-</div>
+  <div>
+    <%= label_tag "Prep time (hands-on)" %>
+    <%= number_field_tag "recipes[prep_time]" %> minutes
+  </div>
+  <div>
+    <%= label_tag "Cook time (hands-off)" %>
+    <%= number_field_tag "recipes[prep_time]" %> minutes
+  </div>
 
-<div class="form-group">
-  <%= f.label :difficulty %>
-  <%= f.number_field :difficulty %>
-</div>
+  <div>
+    Add ingredients:
+    <%= label_tag "Amount" %>
+    <%= number_field_tag "measurements[quantity]" %>
+    <%= label_tag "Units" %>
+    <%= text_field_tag "measurements[units]" %>
+    <%= label_tag "Ingredient" %>
+    <%= text_field_tag "some damn thing" %>
 
-<div class="form-group">
-  <%= f.label :servings %>
-  <%= f.number_field :servings %>
-</div>
-
-<div class="form-group">
-  <%= f.label :steps %>
-  <%= f.text_area :steps %>
-</div>
-
-<div class="form-group">
-  <%= f.label :measurement %>
-  <%= f.number_field :quantity %>
-  <%= f.text_field :units %>
-  <%= f.text_field :name %>
-</div>
-
-<div class="form-group">
-  <%= f.submit "Add Recipe"%>
-</div>
-
+  <%= submit_tag %>
 <% end %>

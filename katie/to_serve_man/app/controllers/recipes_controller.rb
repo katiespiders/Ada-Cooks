@@ -3,6 +3,7 @@ class RecipesController < ApplicationController
   before_action :find_recipe, only: [:show, :edit]
 
   def create
+    raise params.inspect
     @recipe = Recipe.new(recipe_params)
     if @recipe.save
       redirect_to recipe_path(@recipe.id)
@@ -36,6 +37,6 @@ class RecipesController < ApplicationController
 
     def ingredient_params
       params.require(:recipes).permit(:quantity, :unit, :name)
-    end      
+    end
 
 end

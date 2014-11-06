@@ -1,0 +1,42 @@
+<%= form_for :recipes, url: recipes_path do |f| %>
+
+<div class="form-group">
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+</div>
+
+<div class="form-group">
+  <%= f.label :prep_time %>
+  <%= f.number_field :prep_time %>
+
+  <%= f.label :cook_time %>
+  <%= f.number_field :cook_time %>
+</div>
+
+<div class="form-group">
+  <%= f.label :difficulty %>
+  <%= f.number_field :difficulty %>
+</div>
+
+<div class="form-group">
+  <%= f.label :servings %>
+  <%= f.number_field :servings %>
+</div>
+
+<div class="form-group">
+  <%= f.label :steps %>
+  <%= f.text_area :steps %>
+</div>
+
+<div class="form-group">
+  <%= f.label :measurements %>
+  <%= f.number_field :quantity %>
+  <%= f.text_field :units %>
+  <%= f.text_field :name %>
+</div>
+
+<div class="form-group">
+  <%= f.submit "Add Recipe"%>
+</div>
+
+<% end %>

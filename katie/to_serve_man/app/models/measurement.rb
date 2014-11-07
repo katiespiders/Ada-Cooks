@@ -3,5 +3,5 @@ class Measurement < ActiveRecord::Base
   belongs_to :ingredient
 
   def initialize(attributes)
-    
+  end
 end

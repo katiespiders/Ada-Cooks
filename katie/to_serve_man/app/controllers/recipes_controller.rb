@@ -3,10 +3,12 @@ class RecipesController < ApplicationController
   before_action :find_recipe, only: [:show, :edit]
 
   def create
-    @recipe_form = RecipeForm.new(params[:recipe_form])
-    if @recipe_form.save
-      redirect_to recipe_path(@recipe)
-    end
+    # raise params.inspect
+    @recipe_form = RecipeForm.new(params.require(:recipe_forms).permit(:name, :author, :quantity, :unit, :ingredient_id))
+    @recipe_form.submit
+    # if @recipe_form.save
+    #   redirect_to recipe_path(@recipe)
+    # end
 
   end
 

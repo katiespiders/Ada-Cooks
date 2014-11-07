@@ -4,7 +4,15 @@ class RecipesController < ApplicationController
 
   def create
     # raise params.inspect
-    @recipe_form = RecipeForm.new(params.require(:recipe_forms).permit(:name, :author, :quantity, :unit, :ingredient_id))
+    @recipe_form = RecipeForm.new(params.require(:recipe_forms).permit(:name,
+    :author,
+    :prep_time,
+    :cook_time,
+    :difficulty,
+    :servings,
+    :steps,
+    :quantity, :unit, :ingredient_id))
+
     if id = @recipe_form.submit
       redirect_to recipe_path(id)
     else

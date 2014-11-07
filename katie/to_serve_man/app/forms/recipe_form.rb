@@ -8,8 +8,14 @@ class RecipeForm
   def submit
     recipe_attributes = {
       name: @attributes[:name],
-      author: @attributes[:author]
+      author: @attributes[:author],
+      difficulty: @attributes[:difficulty],
+      prep_time: @attributes[:prep_time],
+      cook_time: @attributes[:cook_time],
+      servings: @attributes[:servings],
+      steps: @attributes[:steps]
     }
+    
     recipe = Recipe.create(recipe_attributes)
 
     measurement_attributes = {

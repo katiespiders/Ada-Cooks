@@ -3,13 +3,11 @@ class RecipesController < ApplicationController
   before_action :find_recipe, only: [:show, :edit]
 
   def create
-    raise params.inspect
-    @recipe = Recipe.new(recipe_params)
-    if @recipe.save
-      redirect_to recipe_path(@recipe.id)
-    else
-      render :new
+    @recipe_form = RecipeForm.new(params[:recipe_form])
+    if @recipe_form.save
+      redirect_to recipe_path(@recipe)
     end
+
   end
 
   def update
@@ -34,9 +32,4 @@ class RecipesController < ApplicationController
     def recipe_params
       params.require(:recipes).permit(:name, :difficulty, :prep_time, :cook_time, :steps, :servings, :author)
     end
-
-    def ingredient_params
-      params.require(:recipes).permit(:quantity, :unit, :name)
-    end
-
 end

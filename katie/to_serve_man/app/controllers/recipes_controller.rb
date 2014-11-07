@@ -5,11 +5,11 @@ class RecipesController < ApplicationController
   def create
     # raise params.inspect
     @recipe_form = RecipeForm.new(params.require(:recipe_forms).permit(:name, :author, :quantity, :unit, :ingredient_id))
-    @recipe_form.submit
-    # if @recipe_form.save
-    #   redirect_to recipe_path(@recipe)
-    # end
-
+    if id = @recipe_form.submit
+      redirect_to recipe_path(id)
+    else
+      render :new
+    end
   end
 
   def update

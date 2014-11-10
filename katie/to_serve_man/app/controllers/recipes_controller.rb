@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   before_action :all_recipes, only: [:index]
-  before_action :find_recipe, only: [:show, :edit]
+  before_action :find_recipe, only: [:show, :edit, :update]
 
 
   def create
@@ -15,9 +15,12 @@ class RecipesController < ApplicationController
   end
 
   def update
-    @recipe.update(form_params)
-    if @medium.save
-      redirect_to recipe_path(@medium.id)
+    puts "$"*80, form_params, "#"*80, form_ingredients
+    @recipe_form = RecipeForm.new(form_params)
+    raise
+    @recipe_form.modify(@recipe)
+    if @recipe.save
+      redirect_to recipe_path(@recipe.id)
     else
       render :edit
     end
@@ -41,6 +44,10 @@ class RecipesController < ApplicationController
       :difficulty,
       :servings,
       :steps,
-      :ingredients)
+      :pineapples)
+    end
+
+    def form_ingredients
+      params.require(:recipe_forms).permit(:pineapples)
     end
 end

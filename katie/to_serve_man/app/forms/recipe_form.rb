@@ -2,31 +2,37 @@ class RecipeForm
   attr_reader :attributes
 
   def initialize(attributes)
-    @attributes = attributes
+    puts "*"*80, attributes.inspect, "&"*80
+    @attributes = {
+      name: attributes[:name],
+      author: attributes[:author],
+      difficulty: attributes[:difficulty],
+      prep_time: attributes[:prep_time],
+      cook_time: attributes[:cook_time],
+      servings: attributes[:servings],
+      steps: attributes[:steps],
+    }
+
+    @ingredients = attributes[:pineapples]
   end
 
   def submit
-    recipe_attributes = {
-      name: @attributes[:name],
-      author: @attributes[:author],
-      difficulty: @attributes[:difficulty],
-      prep_time: @attributes[:prep_time],
-      cook_time: @attributes[:cook_time],
-      servings: @attributes[:servings],
-      steps: @attributes[:steps]
-    }
-
-    recipe = Recipe.new(recipe_attributes)
-
-    add_ingredients(recipe) if @attributes[:ingredients]
+    recipe = Recipe.new(@attributes)
+    add_ingredients(recipe) if @ingredients
 
     recipe.save
     recipe.id
-
   end
+
+  def modify(recipe)
+    recipe.update(@attributes)
+    recipe.ingredients.each { |ingredient| ingredient.destroy }
+    add_ingredients(recipe) if @ingredients
+  end
+
 
   def add_ingredients(recipe)
-    @attributes[:ingredients].each { id| recipe.add(Ingredient.find(id)) }
+    @ingredients.each { id| recipe.add(Ingredient.find(id)) }
   end
-  
+
 end

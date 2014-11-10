@@ -15,18 +15,22 @@ class RecipeForm
       steps: @attributes[:steps]
     }
 
-    recipe = Recipe.create(recipe_attributes)
+    recipe = Recipe.new(recipe_attributes)
 
-    measurement_attributes = {
-      quantity: @attributes[:quantity],
-      unit: @attributes[:unit],
-      ingredient_id: @attributes[:ingredient_id],
-      recipe_id: recipe.id
-    }
+    if @attributes[:new_ingredients]
+      @attributes[:new_ingredients].split(', ').each do |name|
+        recipe.ingredients << Ingredient.create(name: name.titleize)
+      end
+    end
 
-    Measurement.create(measurement_attributes)
+    if @attributes[:ingredients]
+      @attributes[:ingredients].each do |id|
+        recipe.ingredients << Ingredient.find(id)
+      end
+    end
 
-    return recipe.id # how kludgy is this?
+    recipe.save
+    recipe.id
 
   end
 

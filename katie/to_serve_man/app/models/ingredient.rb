@@ -3,5 +3,6 @@ class Ingredient < ActiveRecord::Base
 
   def self.categories
     %w[Meat Produce Grains Spices Other]
-  end  
+  end
+
 end

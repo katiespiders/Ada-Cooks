@@ -2,6 +2,7 @@ class RecipesController < ApplicationController
   before_action :all_recipes, only: [:index]
   before_action :find_recipe, only: [:show, :edit]
 
+
   def create
     # raise params.inspect
     @recipe_form = RecipeForm.new(params.require(:recipe_forms).permit(:name,

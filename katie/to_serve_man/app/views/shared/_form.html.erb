@@ -25,20 +25,15 @@
     <%= number_field_tag "recipe_forms[servings]", @recipe ? @recipe.servings : nil %>
   </div>
 
-  <% if @recipe %>
-    <div> how do I want to be able to edit ingredients list? </div>
-
-  <% else %>
     <div>
       <% Ingredient.categories.each do |category| %>
         <% if Ingredient.where(category: category).count > 0 %>
           <%= label_tag "recipe_forms[ingredients]", category.titleize %>
-          <%= select_tag("recipe_forms[ingredients]", options_from_collection_for_select(Ingredient.where(category: category), :id, :name), size: 8, multiple: true) %>
+          <%  selected = Proc.new { |ingredient| @recipe.ingredients.include?(ingredient) if @recipe } %>
+          <%= select_tag("recipe_forms[ingredients]", options_from_collection_for_select(Ingredient.where(category: category), :id, :name, selected), size: 8, multiple: true) %>
         <% end %>
       <% end %>
     </div>
-  <% end %>
-
 
   <div>
     <%= label_tag "recipe_forms[steps]", "Instructions" %>

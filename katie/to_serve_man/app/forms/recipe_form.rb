@@ -1,4 +1,5 @@
 class RecipeForm
+  attr_reader :attributes
 
   def initialize(attributes)
     @attributes = attributes
@@ -19,7 +20,7 @@ class RecipeForm
 
     if @attributes[:new_ingredients]
       @attributes[:new_ingredients].split(', ').each do |name|
-        recipe.ingredients << Ingredient.create(name: name.titleize)
+        recipe.ingredients << Ingredient.create(name: name.capitalize)
       end
     end
 
@@ -33,5 +34,4 @@ class RecipeForm
     recipe.id
 
   end
-
 end

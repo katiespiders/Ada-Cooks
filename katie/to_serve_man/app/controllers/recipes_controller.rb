@@ -10,8 +10,7 @@ class RecipesController < ApplicationController
     :cook_time,
     :difficulty,
     :servings,
-    :steps,
-    :quantity, :unit, :ingredient_id))
+    :steps))
 
     if id = @recipe_form.submit
       redirect_to recipe_path(id)

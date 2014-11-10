@@ -1,0 +1,29 @@
+<%= form_tag recipes_path do %>
+  <div>
+    <%= label_tag :name, "Name" %>
+    <%= text_field_tag :name %>
+
+    <%= label_tag "recipe_forms[author]", "Author" %>
+    <%= text_field_tag "recipe_forms[author]" %>
+  </div>
+
+  <div>
+    <%= label_tag "recipe_forms[prep_time]", "Prep time (hands-on)" %>
+    <%= number_field_tag "recipe_forms[prep_time]" %>
+    <%= label_tag "recipe_forms[cook_time]", "Cook time (hands-off)" %>
+    <%= number_field_tag "recipe_forms[cook_time]" %>
+  </div>
+
+  <div>
+    <%= label_tag "recipe_forms[difficulty]", "Difficulty rating" %>
+    <%= number_field_tag "recipe_forms[difficulty]" %>
+    <%= label_tag "recipe_forms[servings]", "Servings" %>
+    <%= number_field_tag "recipe_forms[servings]" %>
+  </div>
+
+  <div>
+    <%= label_tag "recipe_forms[steps]", "Instructions" %>
+    <%= text_area_tag "recipe_forms[steps]" %>
+  </div>
+  <%= submit_tag %>
+<% end %>

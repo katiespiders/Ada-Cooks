@@ -1,0 +1,7 @@
+<%= label_tag "recipe_forms[quantity]", "Quantity" %>
+<%= text_field_tag "recipe_forms[quantity]" %>
+
+<%= label_tag "recipe_forms[unit]", "Units" %>
+<%= text_field_tag "recipe_forms[unit]" %>
+
+<%= select_tag("recipe_forms[ingredient_id]",  options_from_collection_for_select(Ingredient.all, :id, :name), size: 8) %>

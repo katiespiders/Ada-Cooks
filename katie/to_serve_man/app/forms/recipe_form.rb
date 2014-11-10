@@ -2,7 +2,6 @@ class RecipeForm
 
   def initialize(attributes)
     @attributes = attributes
-
   end
 
   def submit
@@ -15,7 +14,7 @@ class RecipeForm
       servings: @attributes[:servings],
       steps: @attributes[:steps]
     }
-    
+
     recipe = Recipe.create(recipe_attributes)
 
     measurement_attributes = {

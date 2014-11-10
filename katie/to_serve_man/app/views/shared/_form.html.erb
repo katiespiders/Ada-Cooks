@@ -1,39 +1,48 @@
 <%= form_tag recipes_path do %>
   <div>
     <%= label_tag "recipe_forms[name]", "Name" %>
-    <%= text_field_tag "recipe_forms[name]" %>
+    <%= text_field_tag "recipe_forms[name]", @recipe ? @recipe.name : nil %>
 
     <%= label_tag "recipe_forms[author]", "Author" %>
-    <%= text_field_tag "recipe_forms[author]" %>
+    <%= text_field_tag "recipe_forms[author]", @recipe ? @recipe.author : nil %>
   </div>
 
   <div>
     <%= label_tag "recipe_forms[prep_time]", "Prep time (hands-on)" %>
-    <%= number_field_tag "recipe_forms[prep_time]" %>
+    <%= number_field_tag "recipe_forms[prep_time]", @recipe ? @recipe.prep_time : nil %>
+    <strong>minutes</strong>
+  </div>
+  <div>
     <%= label_tag "recipe_forms[cook_time]", "Cook time (hands-off)" %>
-    <%= number_field_tag "recipe_forms[cook_time]" %>
+    <%= number_field_tag "recipe_forms[cook_time]", @recipe ? @recipe.cook_time : nil %>
+    <strong>minutes</strong>
   </div>
 
   <div>
     <%= label_tag "recipe_forms[difficulty]", "Difficulty rating" %>
-    <%= number_field_tag "recipe_forms[difficulty]" %>
+    <%= number_field_tag "recipe_forms[difficulty]", @recipe ? @recipe.difficulty : nil %>
     <%= label_tag "recipe_forms[servings]", "Servings" %>
-    <%= number_field_tag "recipe_forms[servings]" %>
+    <%= number_field_tag "recipe_forms[servings]", @recipe ? @recipe.servings : nil %>
   </div>
 
-  <div>
-    <%= label_tag "recipe_forms[ingredients]", "Ingredients" %>
-    <%= select_tag("recipe_forms[ingredients]", options_from_collection_for_select(Ingredient.all, :id, :name), size: 8, multiple: true) %>
-  </div>
+  <% if @recipe %>
+    <div> how do I want to be able to edit ingredients list? </div>
 
-  <div>
-    <%= label_tag "recipe_forms[new_ingredients]", "Add new ingredients (comma separated)" %>
-    <%= text_field_tag "recipe_forms[new_ingredients]" %>
-  </div>
-  
+  <% else %>
+    <div>
+      <% Ingredient.categories.each do |category| %>
+        <% if Ingredient.where(category: category).count > 0 %>
+          <%= label_tag "recipe_forms[ingredients]", category.titleize %>
+          <%= select_tag("recipe_forms[ingredients]", options_from_collection_for_select(Ingredient.where(category: category), :id, :name), size: 8, multiple: true) %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+
+
   <div>
     <%= label_tag "recipe_forms[steps]", "Instructions" %>
-    <%= text_area_tag "recipe_forms[steps]" %>
+    <%= text_area_tag "recipe_forms[steps]", @recipe ? @recipe.steps : nil %>
   </div>
   <%= submit_tag %>
 <% end %>

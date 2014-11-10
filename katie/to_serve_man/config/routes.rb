@@ -10,7 +10,16 @@ Rails.application.routes.draw do
   patch   "recipes/:id",      to: "recipes#update"
   delete  "recipes/:id",      to: "recipes#destroy"
 
-  
+  get     "ingredients",      to: "ingredients#index",  as: :ingredients
+  get     "ingredients/new",  to: "ingredients#new",    as: :new_ingredient
+  post    "ingredients",      to: "ingredients#create"
+  get     "ingredients/:id",  to: "ingredients#show",   as: :ingredient
+  get     "ingredients/:id/edit",   to: "ingredients#update",   as: :edit_ingredient
+  patch   "ingredients/:id",  to: "ingredients#update"
+  delete  "ingredients/:id",  to: "ingredients#destroy"
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

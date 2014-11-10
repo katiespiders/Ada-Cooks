@@ -3,7 +3,16 @@
   <h4>Cooking (hands-off) time: <%= @recipe.cook_time %> minutes</h4>
   <h4>Serves <%= @recipe.servings %></h4>
 
-  <% Ingredient.categories.each do |category| %>
 
-
+<div class="row">
+  <% @recipe.categories.each do |category, ingredients| %>
+    <div class="col-sm-2">
+      <h5><%= category %></h5>
+      <ul>
+        <% ingredients.each do |ingredient| %>
+          <li> <%= ingredient %> </li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
+</div>

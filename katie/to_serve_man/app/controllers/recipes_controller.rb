@@ -4,7 +4,6 @@ class RecipesController < ApplicationController
 
 
   def create
-# raise
     @recipe_form = RecipeForm.new(form_params)
 
     if id = @recipe_form.submit
@@ -17,7 +16,6 @@ class RecipesController < ApplicationController
   def update
 puts "$"*80, form_params, "#"*80, form_ingredients
     @recipe_form = RecipeForm.new(form_params)
-# raise
     @recipe_form.modify(@recipe)
     if @recipe.save
       redirect_to recipe_path(@recipe.id)

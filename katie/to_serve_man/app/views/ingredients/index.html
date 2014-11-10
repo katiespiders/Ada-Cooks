@@ -4,7 +4,7 @@
     <h5><%= category %></h5>
     <ul>
       <% Ingredient.where(category: category).each do |ingredient| %>
-        <li> <%= ingredient.name %> </li>
+        <li> <%= link_to ingredient.name, ingredient_path(ingredient.id) %> </li>
       <% end %>
     </ul>
     <% end %>

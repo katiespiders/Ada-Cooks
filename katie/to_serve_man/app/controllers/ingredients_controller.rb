@@ -1,6 +1,6 @@
 class IngredientsController < ApplicationController
   before_action :all_ingredients, only: [:index]
-  before_action :find_ingredient, only: [:show, :edit]
+  before_action :find_ingredient, only: [:show, :edit, :update]
 
   def create
     @ingredient = Ingredient.new(ingredient_params)
@@ -8,6 +8,14 @@ class IngredientsController < ApplicationController
       redirect_to ingredient_path(@ingredient.id)
     else
       render :new
+    end
+  end
+
+  def update
+    if @ingredient.update(ingredient_params)
+    #   redirect_to ingredient_path(@ingredient.id)
+    # else
+    #   render :edit
     end
   end
 

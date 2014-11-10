@@ -2,7 +2,7 @@ class RecipeForm
   attr_reader :attributes
 
   def initialize(attributes)
-    puts "*"*80, attributes.inspect, "&"*80
+# puts "*"*80, attributes.inspect, "&"*80
     @attributes = {
       name: attributes[:name],
       author: attributes[:author],
@@ -32,7 +32,7 @@ class RecipeForm
 
 
   def add_ingredients(recipe)
-    @ingredients.each { id| recipe.add(Ingredient.find(id)) }
+    @ingredients.each { |id| recipe.add(Ingredient.find(id)) }
   end
 
 end

@@ -35,6 +35,8 @@
       <% end %>
     </div>
 
+    <%= link_to "Add new ingredients to database", new_ingredient_path %>
+
   <div>
     <%= label_tag "recipe_forms[steps]", "Instructions" %>
     <%= text_area_tag "recipe_forms[steps]", @recipe ? @recipe.steps : nil %>

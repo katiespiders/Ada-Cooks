@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   before_action :all_recipes, only: [:index]
-  before_action :find_recipe, only: [:show, :edit, :update]
+  before_action :find_recipe, only: [:show, :edit, :update, :destroy]
 
 
   def create
@@ -24,6 +24,11 @@ class RecipesController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @recipe.destroy
+    redirect_to root_path
   end
 
   private

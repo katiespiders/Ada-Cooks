@@ -1,1 +1,21 @@
-<%= form_tag ingredients_path %>
+<%= form_tag path, method: method do %>
+  <%= label_tag "ingredients[name]", "Ingredient" %>
+  <%= text_field_tag "ingredients[name]" %>
+
+  <%= label_tag "ingredients[category]", "Meat" %>
+  <%= radio_button_tag "ingredients[category]", "Meat" %>
+
+  <%= label_tag "ingredients[category]", "Produce" %>
+  <%= radio_button_tag "ingredients[category]", "Produce" %>
+
+  <%= label_tag "ingredients[category]", "Grains" %>
+  <%= radio_button_tag "ingredients[category]", "Grains" %>
+
+  <%= label_tag "ingredients[category]", "Spices" %>
+  <%= radio_button_tag "ingredients[category]", "Spices" %>
+
+  <%= label_tag "ingredients[category]", "Other" %>
+  <%= radio_button_tag "ingredients[category]", "Other" %>
+
+  <%= submit_tag %>
+<% end %>

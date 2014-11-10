@@ -3,7 +3,12 @@ class IngredientsController < ApplicationController
   before_action :find_ingredient, only: [:show, :edit]
 
   def create
-
+    @ingredient = Ingredient.new(ingredient_params)
+    if @ingredient.save
+      redirect_to ingredient_path(@ingredient.id)
+    else
+      render :new
+    end
   end
 
 

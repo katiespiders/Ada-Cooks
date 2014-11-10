@@ -4,7 +4,7 @@ class RecipesController < ApplicationController
 
 
   def create
-    # raise params.inspect
+# raise
     @recipe_form = RecipeForm.new(form_params)
 
     if id = @recipe_form.submit
@@ -15,9 +15,9 @@ class RecipesController < ApplicationController
   end
 
   def update
-    puts "$"*80, form_params, "#"*80, form_ingredients
+puts "$"*80, form_params, "#"*80, form_ingredients
     @recipe_form = RecipeForm.new(form_params)
-    raise
+# raise
     @recipe_form.modify(@recipe)
     if @recipe.save
       redirect_to recipe_path(@recipe.id)
@@ -49,10 +49,6 @@ class RecipesController < ApplicationController
       :difficulty,
       :servings,
       :steps,
-      :ingredients)
-    end
-
-    def form_ingredients
-      params.require(:recipe_forms).permit(:ingredients)
+      :ingredients) # THESE ARE NEVER PERMITTED AND I DON'T KNOW WHY
     end
 end

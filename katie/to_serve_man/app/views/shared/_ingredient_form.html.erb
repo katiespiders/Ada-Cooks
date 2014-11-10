@@ -1,6 +1,6 @@
 <%= form_tag path, method: method do %>
   <%= label_tag "ingredients[name]", "Ingredient" %>
-  <%= text_field_tag "ingredients[name]" %>
+  <%= text_field_tag "ingredients[name]", @ingredient? @ingredient.name : nil %>
 
   <%= label_tag "ingredients[category]", "Meat" %>
   <%= radio_button_tag "ingredients[category]", "Meat" %>

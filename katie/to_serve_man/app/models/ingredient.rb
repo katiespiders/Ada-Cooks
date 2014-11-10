@@ -5,4 +5,8 @@ class Ingredient < ActiveRecord::Base
     %w[Meat Produce Grains Spices Other]
   end
 
+  def self.all_in(category)
+    Ingredient.where(category: category)
+  end
+
 end

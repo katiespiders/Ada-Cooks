@@ -18,20 +18,15 @@ class RecipeForm
 
     recipe = Recipe.new(recipe_attributes)
 
-    if @attributes[:new_ingredients]
-      @attributes[:new_ingredients].split(', ').each do |name|
-        recipe.ingredients << Ingredient.create(name: name.capitalize)
-      end
-    end
-
-    if @attributes[:ingredients]
-      @attributes[:ingredients].each do |id|
-        recipe.ingredients << Ingredient.find(id)
-      end
-    end
+    add_ingredients(recipe) if @attributes[:ingredients]
 
     recipe.save
     recipe.id
 
   end
+
+  def add_ingredients(recipe)
+    @attributes[:ingredients].each { id| recipe.add(Ingredient.find(id)) }
+  end
+  
 end

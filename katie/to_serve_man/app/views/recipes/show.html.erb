@@ -1,8 +1,8 @@
 <h1><%= @recipe.name %> <small>by <%= @recipe.author %></h1>
   <h4>Preparation (hands-on) time: <%= @recipe.prep_time %> minutes</h4>
   <h4>Cooking (hands-off) time: <%= @recipe.cook_time %> minutes</h4>
-  <h4>Serves <%= @recipe.servings %></h4>
-
+  <h4>Serves <%= @recipe.servings %></h4><br>
+  <h4>Ingredients:</h4>
 
 <div class="row">
   <% @recipe.categories.each do |category, ingredients| %>
@@ -14,5 +14,6 @@
         <% end %>
       </ul>
     </div>
+
   <% end %>
 </div>

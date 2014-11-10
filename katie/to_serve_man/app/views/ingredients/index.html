@@ -1,0 +1,13 @@
+<% Ingredient.categories.each do |category| %>
+  <% unless Ingredient.where(category: category).count == 0 %>
+  <div class="col-sm-2">
+    <h5><%= category %></h5>
+    <ul>
+      <% Ingredient.where(category: category).each do |ingredient| %>
+        <li> <%= ingredient.name %> </li>
+      <% end %>
+    </ul>
+    <% end %>
+  </div>
+
+<% end %>
